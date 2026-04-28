@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 const endpoint = "https://fakestoreapi.com/products"
 
@@ -27,30 +28,30 @@ export default function Products() {
 
                 {products.map((product) => (
                     <div key={product.id} className="col-md-4">
+                        <Link to={`/products/${product.id}`} className="text-decoration-none text-dark">
+                            <div className="card h-100 shadow-sm">
 
-                        <div className="card h-100 shadow-sm">
+                                <img
+                                    src={product.image}
+                                    alt={product.title}
+                                    className="card-img-top p-3"
+                                    style={{ height: "220px", objectFit: "contain" }}
+                                />
 
-                            <img
-                                src={product.image}
-                                alt={product.title}
-                                className="card-img-top p-3"
-                                style={{ height: "220px", objectFit: "contain" }}
-                            />
+                                <div className="card-body">
 
-                            <div className="card-body">
+                                    <h6 className="card-title">
+                                        {product.title}
+                                    </h6>
 
-                                <h6 className="card-title">
-                                    {product.title}
-                                </h6>
+                                    <p className="fw-bold">
+                                        € {product.price}
+                                    </p>
 
-                                <p className="fw-bold">
-                                    € {product.price}
-                                </p>
+                                </div>
 
                             </div>
-
-                        </div>
-
+                        </Link>
                     </div>
                 ))}
 
